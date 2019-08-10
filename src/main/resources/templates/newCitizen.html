@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div style="padding:1em;" class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/homepage">eCitizenRegistral</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/newCitizen">New citizen</a></li>
+                <li><a href="/listCitizen">List</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div style="margin: 1em;">
+        <span style="font-size: 2em; color: #32a5e7;">New Citizen Form</span>
+    </div>
+
+    <form id="newCitizenForm" method="post" action="/newCitizen" th:object="${citizen}">
+        <fieldset>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ssN">SSN</label>
+                        <span th:if="${#fields.hasErrors('ssN')}" th:errors="*{ssN}"
+                              class="alert alert-danger"></span>
+                        <input id="ssN" th:field="*{ssN}" type="text" class="form-control"  required/>
+                    </div>
+                </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                              class="alert alert-danger"></span>
+                        <input id="firstName" th:field="*{firstName}" type="text" class="form-control"  required/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <span th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"
+                              class="alert alert-danger"></span>
+                        <input id="middleName" name="middleName" type="text" class="form-control"
+                               th:value="${citizen.middleName}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                              class="alert alert-danger"></span>
+                        <input id="lastName" name="lastName" type="text" class="form-control"
+                               th:value="${citizen.lastName}" required/>
+                    </div>
+                </div>
+
+            </div>
+
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date Of Birth</label>
+                        <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"
+                              class="alert alert-danger"></span>
+                        <input id="dateOfBirth" name="dateOfBirth" type="date" class="form-control"
+                               th:field="*{{dateOfBirth}}" />
+
+                    </div>
+                </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="yearlyIncome">yearly Income</label>
+                    <span th:if="${#fields.hasErrors('yearlyIncome')}" th:errors="*{yearlyIncome}"
+                          class="alert alert-danger"></span>
+                    <input id="yearlyIncome" name="yearlyIncome" type="text" class="form-control"
+                           th:value="${citizen.yearlyIncome}" required/>
+                </div>
+            </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <span th:if="${#fields.hasErrors('state')}" th:errors="*{state}"
+                              class="alert alert-danger"></span>
+                        <input id="state" name="state" type="text" class="form-control"
+                               th:value="${citizen.state}" required/>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div style="float:right;">
+
+                <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-small">Save</button>
+            </div>
+        </fieldset>
+    </form>
+
+
+</div>
+</body>
+</html>
